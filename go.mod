@@ -1,4 +1,4 @@
-module github.com/KendoCross/newbing
+module github.com/thuongtin/bing_img_creator
 
 go 1.20
 

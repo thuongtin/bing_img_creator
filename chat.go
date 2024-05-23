@@ -1,4 +1,4 @@
-package newbing
+package bing
 
 import (
 	"context"

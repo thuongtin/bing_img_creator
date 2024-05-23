@@ -4,11 +4,11 @@ import (
 	"context"
 	"testing"
 
-	"github.com/KendoCross/newbing"
+	bing "github.com/thuongtin/bing_img_creator"
 )
 
 func TestSMS(t *testing.T) {
-	bingChat, err := newbing.NewChat("new bing cookie ")
+	bingChat, err := bing.NewChat("new bing cookie ")
 	if err != nil {
 		t.Error(err)
 		return

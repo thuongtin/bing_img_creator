@@ -6,7 +6,7 @@ new bing API
 
 ```golang
 
-    import "github.com/KendoCross/newbing"
+    import "github.com/thuongtin/bing_img_creator"
     
     // 通过 cookie 初始化
     bingChat, err := newbing.NewChat(" new bing cookie ")
@@ -35,7 +35,7 @@ new bing API
 
 ```golang
 
-    import "github.com/KendoCross/newbing"
+    import "github.com/thuongtin/bing_img_creator"
     
     bingImgGen := newbing.NewImgGen("new bing cookie")
     ctx, cancel := context.WithTimeout(context.Background(), time.Minute)

@@ -1,4 +1,4 @@
-package newbing
+package bing
 
 import (
 	"context"
@@ -7,6 +7,7 @@ import (
 	"math/rand"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 	"time"
 
@@ -31,7 +32,7 @@ var HEADERS = map[string]string{
 	"content-type":    "application/x-www-form-urlencoded",
 	"referrer":        "https://www.bing.com/images/create/",
 	"origin":          "https://www.bing.com",
-	"user-agent":      "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.63",
+	"user-agent":      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
 }
 
 func (gen *BingImgGen) GenImgAync(ctx context.Context, prompt string) (ch <-chan []string, err error) {
@@ -46,6 +47,16 @@ func (gen *BingImgGen) GenImgAync(ctx context.Context, prompt string) (ch <-chan
 			return
 		}
 		if resp.StatusCode != http.StatusFound {
+			// Write response body to file
+			var body []byte
+			body, err = io.ReadAll(resp.Body)
+			if err != nil {
+				return
+			}
+			err = os.WriteFile("resp.html", body, 0644)
+			if err != nil {
+				return
+			}
 			err = fmt.Errorf("CURL %s http.StatusCode = %d", "createPath", resp.StatusCode)
 			return
 		}
